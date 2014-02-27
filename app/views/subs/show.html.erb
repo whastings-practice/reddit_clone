@@ -1,0 +1,9 @@
+<h1><%= @sub.name %></h1>
+
+<ul class="list-group">
+  <% @sub.links.each do |link| %>
+    <li class="list-group-item">
+      <%= link_to link.title, link %>
+    </li>
+  <% end %>
+</ul>

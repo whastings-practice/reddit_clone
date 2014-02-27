@@ -1,7 +1,8 @@
 <%= render 'shared/errors', object: user %>
 
 <form action="<%= user_form_url(user) %>" method="post" accept-charset="utf-8">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= auth_token_input %>
+
   <% if user.persisted? %>
     <input type="hidden" name="_method" value="PATCH">
   <% end %>

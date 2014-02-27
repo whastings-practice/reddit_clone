@@ -1,0 +1,8 @@
+<h1>Navigate Subs, <%= current_user.username %></h1>
+<hr/>
+
+<ul class="list-group">
+  <% @subs.each do |sub| %>
+    <li class="list-group-item"><%= link_to sub.name, sub %></li>
+  <% end %>
+</ul>

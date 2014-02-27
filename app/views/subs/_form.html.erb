@@ -1,0 +1,53 @@
+<%= render 'shared/errors', object: sub %>
+
+<form action="<%= sub_form_url(sub) %>" method="post" accept-charset="utf-8">
+
+  <%= auth_token_input %>
+
+  <% if sub.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <div class="form-group">
+    <label for="sub_name">Sub Name</label>
+    <input type="text" name="sub[name]"
+           id="sub_name" value="<%= @sub.name %>">
+  </div>
+
+  <% if action == :create %>
+    <h2>Make Some Links</h2>
+    <hr/>
+
+    <% sub.links.each_with_index do |link, idx| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="link_title_<%= idx %>">Title <%=idx %></label>
+            <input type="text" name="sub[links_attributes][<%= idx %>][title]"
+                   id="link_title_<%= idx %>" value="<%= link.title %>">
+          </div>
+        </div><!--/col-md-6-->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="link_url_<%= idx %>">URL <%=idx %></label>
+            <input type="text" name="sub[links_attributes][<%= idx %>][url]"
+                   id="link_url_<%= idx %>" value="<%= link.url %>">
+          </div>
+        </div><!--/col-md-6-->
+      </div><!--/row-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="link_desc_<%= idx %>">Description <%=idx %></label>
+            <textarea name="sub[links_attributes][<%= idx %>][description]"
+                   id="link_desc_<%= idx %>"><%= link.description %></textarea>
+          </div>
+          <hr/>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <input type="submit" value="<%= sub_submit_text(sub) %>"
+         class="btn btn-success">
+</form>

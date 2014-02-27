@@ -22,6 +22,8 @@ class Sub < ActiveRecord::Base
   has_many :sub_memberships
   has_many :links, through: :sub_memberships
 
+  accepts_nested_attributes_for :links, reject_if: :all_blank
+
   def is_moderator?(user)
     self.moderator.id == user.id
   end
