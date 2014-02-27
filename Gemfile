@@ -37,6 +37,10 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+
+  gem 'spork-rails', '4.0.0'
+  gem 'guard-spork', '1.5.0'
+  gem 'childprocess', '0.3.6'
 end
 
 group :test do
@@ -52,7 +56,7 @@ group :development do
   gem 'pry-rails'
 end
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+ gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
