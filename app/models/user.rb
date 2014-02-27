@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many(
+    :moderated_subs,
+    foreign_key: :moderator_id,
+    class_name: "Sub"
+  )
+
+  has_many :links
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end

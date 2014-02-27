@@ -37,7 +37,10 @@ textarea {
 img {
   @extend .img-responsive;
 }
-
+.current-user-name{
+  float:right;
+  margin-top:7px;
+}
 .user-controls {
   padding: 10px;
   .button_to {

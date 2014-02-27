@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227190857) do
+ActiveRecord::Schema.define(version: 20140227215217) do
+
+  create_table "links", force: true do |t|
+    t.string   "title",                    null: false
+    t.string   "url",         limit: 1024, null: false
+    t.text     "description"
+    t.integer  "user_id",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["user_id"], name: "index_links_on_user_id"
+
+  create_table "sub_memberships", force: true do |t|
+    t.integer  "link_id",    null: false
+    t.integer  "sub_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sub_memberships", ["link_id"], name: "index_sub_memberships_on_link_id"
+  add_index "sub_memberships", ["sub_id"], name: "index_sub_memberships_on_sub_id"
+
+  create_table "subs", force: true do |t|
+    t.integer  "moderator_id", null: false
+    t.string   "name",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subs", ["moderator_id"], name: "index_subs_on_moderator_id"
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

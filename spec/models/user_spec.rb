@@ -21,9 +21,19 @@ describe User do
     end
   end
 
+  describe "Associations" do
+    it { should have_many :moderated_subs }
+    it { should have_many :links }
+  end
+
   describe "#password=" do
     it 'should not set password_digest to the plain text password' do
       expect(user.password_digest).to_not eq('foobar')
+    end
+
+    it 'should show the password as nil' do
+      user.save!
+      expect(User.last.password).to be_nil
     end
 
     it 'should set a password hash that accepts our password' do
