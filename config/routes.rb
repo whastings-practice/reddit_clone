@@ -3,7 +3,12 @@ RedditClone::Application.routes.draw do
   resource  :session, only: [:new, :create, :destroy]
 
   resources :subs
-  resources :links
+
+  resources :links do
+    resources :comments, only: :create
+  end
+
+  resources :comments, only: :destroy
 
   root to: "subs#index"
 end

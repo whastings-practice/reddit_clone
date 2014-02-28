@@ -1,0 +1,18 @@
+<%= render 'shared/errors', object: comment %>
+
+<form action="<%= link_comments_url(link) %>"
+  method="post" accept-charset="utf-8" id="new-comment-form">
+
+  <%= auth_token_input %>
+
+  <div class="form-group">
+    <label for="comment_body">Comment</label>
+    <textarea name="comment[body]"
+           id="comment_body"><%= comment.body %></textarea>
+  </div>
+  <input type="hidden" name="comment[parent_comment_id]"
+    value="<%= comment.parent_comment_id || 0 %>" id="parent_comment_id">
+
+  <input type="submit" value="Add Comment"
+         class="btn btn-success">
+</form>

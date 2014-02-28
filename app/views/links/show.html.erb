@@ -7,3 +7,13 @@
 <hr/>
 <p> <%= link_to @link.url, @link.url %></p>
 <%= simple_format(@link.description) %>
+
+<h2>Comments</h2>
+<hr/>
+<ul class="comments">
+  <% @comments[0].each do |comment| %>
+    <%= render comment, comment_children: @comments %>
+  <% end %>
+</ul>
+
+<%= render 'comments/form', comment: @comment, link: @link %>

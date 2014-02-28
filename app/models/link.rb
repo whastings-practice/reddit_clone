@@ -23,7 +23,7 @@ class Link < ActiveRecord::Base
   def comments_by_parent_id
     comments_hash = Hash.new { |hash, key| hash[key] = [] }
 
-    self.comments.each do |comment|
+    self.comments.includes(:user).each do |comment|
       id = comment.parent_comment_id || 0
       comments_hash[id] << comment
     end

@@ -16,6 +16,7 @@
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
 @import "bootstrap/list-group";
+@import "bootstrap/wells";
 
 .content-main {
   margin-top: 20px;
@@ -58,5 +59,27 @@ img {
     background-color:#E7F3FF;
     text-decoration:none;
     color:#428bca;
+  }
+}
+
+#new-comment-form {
+  clear:both;
+  label{
+    margin-top:10px;
+  }
+}
+
+.comments{
+  list-style-type:none;
+  float:left;
+  width:100%;
+
+  li{
+    float:left;
+    width:100%;
+    .reply-comment-button{
+      float:left;
+      margin-right:20px;
+    }
   }
 }

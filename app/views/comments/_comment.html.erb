@@ -1,0 +1,23 @@
+<li>
+  <div class="well well-lg clearfix"><%= simple_format(comment.body) %>
+    <p><%= comment.user.username %></p>
+    <p>
+      <% if comment.user == current_user %>
+        <%= button_to "Delete Comment", comment,
+          class: "btn btn-danger delete_comment", method: :delete %>
+      <% end %>
+
+      <a href="#" class="reply-comment-button btn btn-success"
+         data-comment-id="<%= comment.id %>">
+        Reply
+      </a>
+    </p>
+  </div>
+  <% if comment_children.has_key?(comment.id) %>
+    <ul class="comments">
+      <% comment_children[comment.id].each do |child_comment| %>
+        <%= render child_comment, comment_children: comment_children %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

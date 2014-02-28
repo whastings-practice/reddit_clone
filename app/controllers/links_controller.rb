@@ -3,6 +3,8 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
+    @comments = @link.comments_by_parent_id
+    @comment = Comment.new
   end
 
   def new
