@@ -24,6 +24,7 @@ describe User do
   describe "Associations" do
     it { should have_many :moderated_subs }
     it { should have_many :links }
+    it { should have_many :comments }
   end
 
   describe "#password=" do

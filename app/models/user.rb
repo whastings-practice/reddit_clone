@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   )
 
   has_many :links
+  has_many :comments
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64

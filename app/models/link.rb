@@ -17,4 +17,17 @@ class Link < ActiveRecord::Base
   belongs_to :user
   has_many   :sub_memberships, inverse_of: :link
   has_many   :subs, through: :sub_memberships
+
+  has_many :comments
+
+  def comments_by_parent_id
+    comments_hash = Hash.new { |hash, key| hash[key] = [] }
+
+    self.comments.each do |comment|
+      id = comment.parent_comment_id || 0
+      comments_hash[id] << comment
+    end
+
+    comments_hash
+  end
 end
