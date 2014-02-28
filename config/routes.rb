@@ -5,5 +5,5 @@ RedditClone::Application.routes.draw do
   resources :subs
   resources :links
 
-  root to: "sessions#new"
+  root to: "subs#index"
 end

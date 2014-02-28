@@ -1,0 +1,9 @@
+<h1><%= @link.title %></h1>
+<ul class="nav nav-pills">
+  <% @link.subs.each do |sub| %>
+    <li><%= link_to sub.name, sub %></li>
+  <% end %>
+</ul>
+<hr/>
+<p> <%= link_to @link.url, @link.url %></p>
+<%= simple_format(@link.description) %>

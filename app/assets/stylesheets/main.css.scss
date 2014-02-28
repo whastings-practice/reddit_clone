@@ -37,13 +37,26 @@ textarea {
 img {
   @extend .img-responsive;
 }
+
 .current-user-name{
   float:right;
   margin-top:7px;
 }
+
 .user-controls {
   padding: 10px;
   .button_to {
     float: right;
+  }
+}
+
+.nav-pills a{
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  @include transition(background-color 1s ease);
+  &:hover{
+    background-color:#E7F3FF;
+    text-decoration:none;
+    color:#428bca;
   }
 }

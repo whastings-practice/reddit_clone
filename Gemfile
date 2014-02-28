@@ -33,6 +33,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'chosen-rails'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'guard-rspec'

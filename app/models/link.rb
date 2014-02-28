@@ -15,6 +15,6 @@ class Link < ActiveRecord::Base
   validates :title, :url, :user_id, presence: true
 
   belongs_to :user
-  has_many   :sub_memberships
+  has_many   :sub_memberships, inverse_of: :link
   has_many   :subs, through: :sub_memberships
 end
