@@ -2,13 +2,15 @@
 #
 # Table name: links
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)      not null
-#  url         :string(1024)     not null
-#  description :text
-#  user_id     :integer          not null
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id               :integer          not null, primary key
+#  title            :string(255)      not null
+#  url              :string(1024)     not null
+#  description      :text
+#  user_id          :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  up_votes_count   :integer
+#  down_votes_count :integer
 #
 
 class Link < ActiveRecord::Base
@@ -19,6 +21,7 @@ class Link < ActiveRecord::Base
   has_many   :subs, through: :sub_memberships
 
   has_many :comments
+  has_many :votes, class_name: 'LinkVote'
 
   def comments_by_parent_id
     comments_hash = Hash.new { |hash, key| hash[key] = [] }

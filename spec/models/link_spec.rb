@@ -2,13 +2,15 @@
 #
 # Table name: links
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)      not null
-#  url         :string(1024)     not null
-#  description :text
-#  user_id     :integer          not null
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id               :integer          not null, primary key
+#  title            :string(255)      not null
+#  url              :string(1024)     not null
+#  description      :text
+#  user_id          :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  up_votes_count   :integer
+#  down_votes_count :integer
 #
 
 require 'spec_helper'
@@ -27,6 +29,7 @@ describe Link do
     it { should have_many(:sub_memberships) }
     it { should have_many(:subs) }
     it { should have_many(:comments) }
+    it { should have_many(:votes).class_name('LinkVote') }
   end
 
   describe "#comments_by_parent_id" do

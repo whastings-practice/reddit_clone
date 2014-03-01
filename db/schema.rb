@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228003455) do
+ActiveRecord::Schema.define(version: 20140228041408) do
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -26,15 +26,31 @@ ActiveRecord::Schema.define(version: 20140228003455) do
   add_index "comments", ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "links", force: true do |t|
-    t.string   "title",                    null: false
-    t.string   "url",         limit: 1024, null: false
-    t.text     "description"
-    t.integer  "user_id",                  null: false
+  create_table "link_votes", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "link_id",    null: false
+    t.integer  "direction",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "link_votes", ["link_id", "user_id"], name: "index_link_votes_on_link_id_and_user_id", unique: true
+  add_index "link_votes", ["link_id"], name: "index_link_votes_on_link_id"
+  add_index "link_votes", ["user_id"], name: "index_link_votes_on_user_id"
+
+  create_table "links", force: true do |t|
+    t.string   "title",                                     null: false
+    t.string   "url",              limit: 1024,             null: false
+    t.text     "description"
+    t.integer  "user_id",                                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes_count",                default: 0
+    t.integer  "down_votes_count",              default: 0
+  end
+
+  add_index "links", ["down_votes_count"], name: "index_links_on_down_votes_count"
+  add_index "links", ["up_votes_count"], name: "index_links_on_up_votes_count"
   add_index "links", ["user_id"], name: "index_links_on_user_id"
 
   create_table "sub_memberships", force: true do |t|

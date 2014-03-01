@@ -25,6 +25,7 @@ describe User do
     it { should have_many :moderated_subs }
     it { should have_many :links }
     it { should have_many :comments }
+    it { should have_many(:votes).class_name('LinkVote') }
   end
 
   describe "#password=" do

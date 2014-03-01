@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   has_many :links
   has_many :comments
+  has_many :votes, class_name: 'LinkVote'
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64
