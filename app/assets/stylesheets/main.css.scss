@@ -17,6 +17,7 @@
 @import "bootstrap/responsive-utilities";
 @import "bootstrap/list-group";
 @import "bootstrap/wells";
+@import "bootstrap/badges";
 
 .content-main {
   margin-top: 20px;
@@ -82,4 +83,9 @@ img {
       margin-right:20px;
     }
   }
+}
+
+.link-popularity {
+  font-weight: bold;
+  margin-bottom: 10px;
 }

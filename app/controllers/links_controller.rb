@@ -20,7 +20,18 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    LinkVote.record_vote(params[:id], current_user.id, LinkVote::UP_VOTE)
+    redirect_to link_url(params[:id])
+  end
+
+  def downvote
+    LinkVote.record_vote(params[:id], current_user.id, LinkVote::DOWN_VOTE)
+    redirect_to link_url(params[:id])
+  end
+
   private
+
   def link_params
     params.require(:link).permit(:title, :url, :description, { sub_ids: [] })
   end

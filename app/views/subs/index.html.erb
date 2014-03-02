@@ -6,3 +6,8 @@
     <li class="list-group-item"><%= link_to sub.name, sub %></li>
   <% end %>
 </ul>
+
+<% if current_user %>
+  <%= link_to 'Add a Link', new_link_url, class: 'btn btn-success' %>
+  <%= link_to 'Create a Sub', new_sub_url, class: 'btn btn-info' %>
+<% end %>

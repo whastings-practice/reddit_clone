@@ -5,8 +5,27 @@
   <% end %>
 </ul>
 <hr/>
-<p> <%= link_to @link.url, @link.url %></p>
-<%= simple_format(@link.description) %>
+
+<div class="row">
+  <div class="col-md-6">
+    <p><%= link_to @link.url, @link.url %></p>
+    <%= simple_format(@link.description) %>
+  </div>
+  <div class="col-md-6">
+    <div class="link-popularity">
+      Popularity
+      <span class="badge"><%= @link.popularity %></span>
+    </div>
+    <% if current_user %>
+      <div class="link-vote-controls">
+        <%= button_to 'Like', upvote_link_url,
+            class: 'btn btn-success', method: :patch %>
+        <%= button_to 'Dislike', downvote_link_url,
+            class: 'btn btn-danger', method: :patch %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <h2>Comments</h2>
 <hr/>

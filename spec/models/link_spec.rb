@@ -44,4 +44,32 @@ describe Link do
       expect(link.comments_by_parent_id[parent2.id]).to eq([child2])
     end
   end
+
+  describe "#popularity" do
+    let(:up_votes_count) { rand(0..100) }
+    let(:down_votes_count) { rand(0..100) }
+    before do
+      link.up_votes_count = up_votes_count
+      link.down_votes_count = down_votes_count
+    end
+    it "should return the link's up vote count - down vote count" do
+      expect(link.popularity).to eq(up_votes_count - down_votes_count)
+    end
+  end
+
+  describe "::by_popularity" do
+    let!(:most_popular) { create(:link) }
+    let!(:least_popular) { create(:link) }
+    let!(:regular) { create(:link) }
+    let!(:newest) { create(:link) }
+    before do
+      most_popular.update_attributes!(up_votes_count: 10, down_votes_count: 3)
+      least_popular.update_attributes!(up_votes_count: 3, down_votes_count: 5)
+    end
+    it "should order first by popularity, then by created date" do
+      expect(Link.by_popularity.to_a).to eq(
+        [most_popular, newest, regular, least_popular]
+      )
+    end
+  end
 end

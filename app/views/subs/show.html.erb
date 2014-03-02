@@ -1,9 +1,13 @@
 <h1><%= @sub.name %></h1>
 
 <ul class="list-group">
-  <% @sub.links.each do |link| %>
+  <% @links.each do |link| %>
     <li class="list-group-item">
       <%= link_to link.title, link %>
     </li>
   <% end %>
 </ul>
+
+<% if @sub.is_moderator?(current_user) %>
+  <%= link_to 'Edit Sub', edit_sub_url(@sub), class: 'btn btn-info' %>
+<% end %>

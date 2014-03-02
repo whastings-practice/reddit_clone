@@ -23,6 +23,10 @@ class Link < ActiveRecord::Base
   has_many :comments
   has_many :votes, class_name: 'LinkVote'
 
+  def self.by_popularity
+    self.order('(up_votes_count - down_votes_count) DESC, created_at DESC')
+  end
+
   def comments_by_parent_id
     comments_hash = Hash.new { |hash, key| hash[key] = [] }
 
@@ -32,5 +36,9 @@ class Link < ActiveRecord::Base
     end
 
     comments_hash
+  end
+
+  def popularity
+    self.up_votes_count - self.down_votes_count
   end
 end

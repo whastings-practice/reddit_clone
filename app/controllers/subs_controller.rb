@@ -2,6 +2,7 @@ class SubsController < ApplicationController
   before_action :find_sub, only: [:show, :edit, :update]
 
   def show
+    @links = @sub.links.by_popularity
   end
 
   def index
