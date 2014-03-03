@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :require_signed_in
+
   def create
     @link = Link.find(params[:link_id])
     @comment = current_user.comments.new(comment_params)

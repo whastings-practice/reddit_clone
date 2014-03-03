@@ -1,5 +1,6 @@
 class SubsController < ApplicationController
   before_action :find_sub, only: [:show, :edit, :update]
+  before_action :require_signed_in, only: [:new, :create, :edit, :update]
 
   def show
     @links = @sub.links.by_popularity

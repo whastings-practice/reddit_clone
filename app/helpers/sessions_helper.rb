@@ -24,4 +24,10 @@ module SessionsHelper
   def session_token=(token)
     session[:session_token] = token
   end
+
+  def require_signed_in
+    unless current_user
+      redirect_to new_session_url
+    end
+  end
 end

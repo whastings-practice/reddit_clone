@@ -7,10 +7,12 @@
           class: "btn btn-danger delete_comment", method: :delete %>
       <% end %>
 
-      <a href="#" class="reply-comment-button btn btn-success"
-         data-comment-id="<%= comment.id %>">
-        Reply
-      </a>
+      <% if current_user %>
+        <a href="#" class="reply-comment-button btn btn-success"
+           data-comment-id="<%= comment.id %>">
+          Reply
+        </a>
+      <% end %>
     </p>
   </div>
   <% if comment_children.has_key?(comment.id) %>

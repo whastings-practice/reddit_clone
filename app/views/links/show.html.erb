@@ -35,8 +35,10 @@
   <% end %>
 </ul>
 
-<%= render 'comments/form', comment: @comment, link: @link %>
+<% if current_user %>
+  <%= render 'comments/form', comment: @comment, link: @link %>
 
-<% content_for(:page_bottom) do %>
-  <%= javascript_include_tag 'comments' %>
+  <% content_for(:page_bottom) do %>
+    <%= javascript_include_tag 'comments' %>
+  <% end %>
 <% end %>

@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :load_subs, only: [:new, :create]
+  before_action :require_signed_in, only: [:new, :create, :upvote, :downvote]
 
   def show
     @link = Link.find(params[:id])
