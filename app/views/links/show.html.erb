@@ -29,10 +29,14 @@
 
 <h2>Comments</h2>
 <hr/>
-<ul class="comments">
+<ul class="comments" id="comments-list">
   <% @comments[0].each do |comment| %>
     <%= render comment, comment_children: @comments %>
   <% end %>
 </ul>
 
 <%= render 'comments/form', comment: @comment, link: @link %>
+
+<% content_for(:page_bottom) do %>
+  <%= javascript_include_tag 'comments' %>
+<% end %>

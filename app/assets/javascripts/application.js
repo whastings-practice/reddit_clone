@@ -13,25 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require chosen-jquery
-//= require_tree .
 
-(function($) {
-
-  $(document).ready(function() {
-    var commentForm = $('#new-comment-form'),
-        replyButtons = $('.reply-comment-button'),
-        parentIdInput = $('#parent_comment_id');
-
-    replyButtons.on('click', function(event) {
-      event.preventDefault();
-      var button = $(this);
-      var parentId = button.attr('data-comment-id');
-      parentIdInput.val(parentId);
-      commentForm.remove();
-      button.after(commentForm);
-      commentForm.show();
-    });
-  });
-
-
-})(jQuery);

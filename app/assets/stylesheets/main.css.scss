@@ -78,11 +78,16 @@ img {
   li{
     float:left;
     width:100%;
-    .reply-comment-button{
-      float:left;
-      margin-right:20px;
-    }
   }
+}
+
+.reply-comment-button{
+  float:left;
+  margin-right:20px;
+}
+
+#comment-close-button {
+  display: none;
 }
 
 .link-popularity {
